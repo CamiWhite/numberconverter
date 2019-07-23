@@ -7,3 +7,12 @@ logging:
     com.sonatype.numberconverter: DEBUG
   pattern:
     console: "%highlight([%-5level]) %magenta([%date{ISO8601}] [%X{stamp}] [%class->%method:%line]) | %msg%n"
+
+---
+spring:
+  profiles: PROD
+
+logging:
+  level:
+    com.sonatype.numberspeller: INFO
+  file: logs/app.log

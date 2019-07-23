@@ -21,7 +21,7 @@ object NumberConverterServiceImpl: NumberConverterService {
      * @return The transformed number
      */
     override fun convertNumber(number: String): String {
-        logger.info("Number conversion started")
+        logger.debug("Number conversion started")
         val parsedNumber = number.toIntOrNull() ?: return "Input string is not a valid number"
         if (parsedNumber !in 0..1_000_000) {
             return "Number should be between 0 and 1000000"
