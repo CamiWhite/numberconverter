@@ -1,0 +1,9 @@
+spring:
+  main:
+    web-application-type: none
+logging:
+  level:
+    root: INFO
+    com.sonatype.numberconverter: DEBUG
+  pattern:
+    console: "%highlight([%-5level]) %magenta([%date{ISO8601}] [%X{stamp}] [%class->%method:%line]) | %msg%n"

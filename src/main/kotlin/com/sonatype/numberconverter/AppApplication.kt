@@ -16,9 +16,12 @@ open class AppApplication: CommandLineRunner {
     lateinit var numberInterpreter: NumberConverterService
 
     override fun run(vararg args: String?) {
+        logger.debug("Starting number conversion")
         for (i in 0 until args.size) {
+            logger.debug("Converting value: ${args[i]}")
             println(numberInterpreter.convertNumber(args[i]!!))
         }
+        logger.debug("Number processing finished")
     }
 }
 

@@ -3,6 +3,7 @@ package com.sonatype.numberconverter.service.impl
 import com.sonatype.numberconverter.converter.NumberConverter
 import com.sonatype.numberconverter.converter.impl.EnglishNumberConverter
 import com.sonatype.numberconverter.service.NumberConverterService
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 /**
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service
 @Service
 object NumberConverterServiceImpl: NumberConverterService {
 
+    private val logger = LoggerFactory.getLogger(NumberConverterServiceImpl::class.java)
+
     /**
      * Makes the required validations and execution of the number transformation
      *
@@ -18,11 +21,13 @@ object NumberConverterServiceImpl: NumberConverterService {
      * @return The transformed number
      */
     override fun convertNumber(number: String): String {
+        logger.info("Number conversion started")
         val parsedNumber = number.toIntOrNull() ?: return "Input string is not a valid number"
         if (parsedNumber !in 0..1_000_000) {
             return "Number should be between 0 and 1000000"
         }
 
+        logger.info("Converting ${number}")
         return getConverter().asWords(parsedNumber).replace("-", " ")
     }
 
