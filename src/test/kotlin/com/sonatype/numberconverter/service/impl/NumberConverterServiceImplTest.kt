@@ -25,13 +25,21 @@ class NumberConverterServiceImplTest {
     }
 
     @Test
-    fun `Special characters are not allowed and a message is returned` () {
+    fun `No decimals allowed and a message is returned` () {
         Assertions.assertEquals(errorIllegalNumberMessage,
             numberConverterService.convertNumber("1.2"))
+    }
+
+    @Test
+    fun `Empty strings not allowed and a message is returned` () {
         Assertions.assertEquals(errorIllegalNumberMessage,
             numberConverterService.convertNumber(""))
         Assertions.assertEquals(errorIllegalNumberMessage,
             numberConverterService.convertNumber("  "))
+    }
+
+    @Test
+    fun `Special characters are not allowed and a message is returned` () {
         Assertions.assertEquals(errorIllegalNumberMessage,
             numberConverterService.convertNumber("$12"))
     }
