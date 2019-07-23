@@ -6,10 +6,10 @@ import com.sonatype.numberconverter.service.NumberConverterService
 import org.springframework.stereotype.Service
 
 /**
- * Service in charge of converting numbers into text
+ * Service in charge of converting numbers into text, since it doesn't have state it may be treated as a singleton
  */
 @Service
-class NumberConverterServiceImpl: NumberConverterService {
+object NumberConverterServiceImpl: NumberConverterService {
 
     /**
      * Makes the required validations and execution of the number transformation
@@ -18,7 +18,12 @@ class NumberConverterServiceImpl: NumberConverterService {
      * @return The transformed number
      */
     override fun convertNumber(number: String): String {
-        return getConverter().asWords(number.toInt())
+        val parsedNumber = number.toIntOrNull() ?: return "Input string is not a valid number"
+        if (parsedNumber !in 0..1_000_000) {
+            return "Number should be between 0 and 1000000"
+        }
+
+        return getConverter().asWords(parsedNumber).replace("-", " ")
     }
 
     /**
