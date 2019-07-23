@@ -14,9 +14,14 @@ repositories {
     mavenCentral()
 }
 
+bootRun {
+    standardInput = System.in
+}
+
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    implementation "org.springframework.boot:spring-boot-starter"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.shell:spring-shell-starter:2.0.1.RELEASE'
     compile 'pl.allegro.finance:tradukisto:1.8.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
