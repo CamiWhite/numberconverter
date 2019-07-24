@@ -14,5 +14,5 @@ spring:
 
 logging:
   level:
-    com.sonatype.numberspeller: INFO
+    com.sonatype.numberconverter: INFO
   file: logs/app.log
