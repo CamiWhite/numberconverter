@@ -23,24 +23,26 @@ object EnglishNumberConverter: NumberConverter {
 
     /**
      * Transform a number to english words by diving the number into chunks of 3 and transforming each chunk into its
-     * english equivalent, then joins the result with respective thousands
+     * english equivalent, then joins the result with respective thousands.
+     *
+     * Special case: -Integer#MIN due to an overflow
      *
      * @param number The number to transform
      * @return The transformed number into text
      */
     override fun asWords(number: Int): String {
-        val absoluteNumber = number.absoluteValue
-        if (absoluteNumber == 0) {
+        if (number == 0) {
             return "zero"
         }
-        val numberAsString = absoluteNumber.toString()
-        val chunkedNumbers = splitInChunks(numberAsString)
-        val chunksTotalSize = chunkedNumbers.size
         val result = StringJoiner(" ")
-
+        var numberAsString = number.toString()
         if(number < 0) {
             result.add("negative")
+            numberAsString = numberAsString.removePrefix("-")
         }
+
+        val chunkedNumbers = splitInChunks(numberAsString)
+        val chunksTotalSize = chunkedNumbers.size
 
         for (index in 0 until chunkedNumbers.size) {
             val chunk = chunkedNumbers.pop()

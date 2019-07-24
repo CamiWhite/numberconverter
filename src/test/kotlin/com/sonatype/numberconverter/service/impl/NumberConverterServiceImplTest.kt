@@ -25,6 +25,20 @@ class NumberConverterServiceImplTest {
     }
 
     @Test
+    fun `Number may be equals to Int#MIN_VALUE` () {
+        Assertions.assertEquals("negative two billion one hundred forty seven million four hundred eighty " +
+                "three thousand six hundred forty eight",
+            numberConverterService.convertNumber("-2147483648"))
+    }
+
+    @Test
+    fun `Number may be equals to Int#MAX_VALUE` () {
+        Assertions.assertEquals("two billion one hundred forty seven million four hundred eighty three " +
+                "thousand six hundred forty seven",
+            numberConverterService.convertNumber("2147483647"))
+    }
+
+    @Test
     fun `No decimals allowed and a message is returned` () {
         Assertions.assertEquals(errorIllegalNumberMessage,
             numberConverterService.convertNumber("1.2"))
