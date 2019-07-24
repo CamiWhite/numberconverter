@@ -32,11 +32,13 @@ any version may work.
 Spring boot let us define different profiles to execute our application, right now the only difference between them 
 its the Logger level.
 
+To execute the project remember to be at the root of the project.
+
 You may change the configuration in the `application.yml` file
 
 ### Development Mode
-A simple way to test the application during development is using: `./gradlew bootRun --console=plain` but I still 
-encourage to execute the production version for testing purposes
+For testing purposes I higly recommed using the production mode, but if you still want a fast way to execute the project just execute:
+- `./gradlew bootRun --console=plain`
 
 ### Production Mode
 To execute the application in this mode lets execute in steps, the following commands:
