@@ -47,7 +47,7 @@ To execute the application in this mode lets execute in steps the following comm
 Once you've executed the application you are probably seeing a console prepared to accept commands. Just type 
 `convert <number>` to start converting numbers such as: `convert 123`
 
-#Unit Tests
+# Unit Tests
 These can be found at the `srv/test` folder. You can also execute the unit testing with `./gradlew test` the results 
 will be generated at `build/reports/tests/test/index.html
 ![Unit Tests](./Tests.png)
