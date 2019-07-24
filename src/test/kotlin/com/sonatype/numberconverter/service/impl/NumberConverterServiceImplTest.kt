@@ -9,19 +9,19 @@ class NumberConverterServiceImplTest {
 
     private val numberConverterService = NumberConverterServiceImpl
 
-    private val errorNumberRangeMessage = "Number should be between 0 and 1000000"
+    private val errorNumberRangeMessage = "Number should be between ${Int.MIN_VALUE} and ${Int.MAX_VALUE}"
     private val errorIllegalNumberMessage = "Input string is not a valid number"
 
     @Test
-    fun `Negative numbers are not allowed and a message is returned` () {
+    fun `Number should not be below Int#MIN_VALUE` () {
         Assertions.assertEquals(errorNumberRangeMessage,
-            numberConverterService.convertNumber("-5"))
+            numberConverterService.convertNumber("-2147483649"))
     }
 
     @Test
-    fun `Number should not exceed 1000000` () {
+    fun `Number should not exceed Int#MAX_VALUE` () {
         Assertions.assertEquals(errorNumberRangeMessage,
-            numberConverterService.convertNumber("1000001"))
+            numberConverterService.convertNumber("2147483648"))
     }
 
     @Test
@@ -50,5 +50,13 @@ class NumberConverterServiceImplTest {
             numberConverterService.convertNumber("123"))
         Assertions.assertEquals("forty two thousand three hundred fifty three",
             numberConverterService.convertNumber("42353"))
+    }
+
+    @Test
+    fun `Negative number converted successfully` () {
+        Assertions.assertEquals("negative one hundred twenty three",
+            numberConverterService.convertNumber("-123"))
+        Assertions.assertEquals("negative forty two thousand three hundred fifty three",
+            numberConverterService.convertNumber("-42353"))
     }
 }

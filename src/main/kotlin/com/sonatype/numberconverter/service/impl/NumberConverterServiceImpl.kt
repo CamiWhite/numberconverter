@@ -22,13 +22,13 @@ object NumberConverterServiceImpl: NumberConverterService {
      */
     override fun convertNumber(number: String): String {
         logger.debug("Number conversion started")
-        val parsedNumber = number.toIntOrNull() ?: return "Input string is not a valid number"
+        val parsedNumber = number.toLongOrNull() ?: return "Input string is not a valid number"
         if (parsedNumber !in Int.MIN_VALUE..Int.MAX_VALUE) {
             return "Number should be between ${Int.MIN_VALUE} and ${Int.MAX_VALUE}"
         }
 
-        logger.info("Converting ${number}")
-        return getConverter().asWords(parsedNumber).replace("-", " ")
+        logger.debug("Converting ${number}")
+        return getConverter().asWords(parsedNumber.toInt())
     }
 
     /**

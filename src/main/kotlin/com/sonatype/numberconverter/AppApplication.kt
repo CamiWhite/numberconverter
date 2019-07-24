@@ -8,6 +8,6 @@ import org.springframework.boot.runApplication
 open class AppApplication
 
 fun main(args: Array<String>) {
-    System.setProperty("org.jline.terminal.dumb", "true");
+    System.setProperty("org.jline.terminal.dumb", "true")
     runApplication<AppApplication>(*args)
 }

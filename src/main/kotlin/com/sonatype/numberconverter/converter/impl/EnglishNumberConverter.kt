@@ -2,6 +2,7 @@ package com.sonatype.numberconverter.converter.impl
 
 import com.sonatype.numberconverter.converter.NumberConverter
 import java.util.*
+import kotlin.math.absoluteValue
 import kotlin.math.ceil
 
 /**
@@ -10,34 +11,10 @@ import kotlin.math.ceil
 object EnglishNumberConverter: NumberConverter {
 
     private val numbers = mapOf(
-        0 to "",
-        1 to "one",
-        2 to "two",
-        3 to "three",
-        4 to "four",
-        5 to "five",
-        6 to "six",
-        7 to "seven",
-        8 to "eight",
-        9 to "nine",
-        10 to "ten",
-        11 to "eleven",
-        12 to "twelve",
-        13 to "thirteen",
-        14 to "fourteen",
-        15 to "fifteen",
-        16 to "sixteen",
-        17 to "seventeen",
-        18 to "eighteen",
-        19 to "nineteen",
-        20 to "twenty",
-        30 to "thirty",
-        40 to "forty",
-        50 to "fifty",
-        60 to "sixty",
-        70 to "seventy",
-        80 to "eighty",
-        90 to "ninety"
+        0 to "", 1 to "one", 2 to "two", 3 to "three", 4 to "four", 5 to "five", 6 to "six", 7 to "seven", 8 to "eight",
+        9 to "nine", 10 to "ten", 11 to "eleven", 12 to "twelve", 13 to "thirteen", 14 to "fourteen", 15 to "fifteen",
+        16 to "sixteen", 17 to "seventeen", 18 to "eighteen", 19 to "nineteen", 20 to "twenty", 30 to "thirty",
+        40 to "forty", 50 to "fifty", 60 to "sixty", 70 to "seventy", 80 to "eighty", 90 to "ninety"
     )
 
     private val thousands = listOf(
@@ -52,13 +29,18 @@ object EnglishNumberConverter: NumberConverter {
      * @return The transformed number into text
      */
     override fun asWords(number: Int): String {
-        if (number == 0) {
+        val absoluteNumber = number.absoluteValue
+        if (absoluteNumber == 0) {
             return "zero"
         }
-        val numberAsString = number.toString()
+        val numberAsString = absoluteNumber.toString()
         val chunkedNumbers = splitInChunks(numberAsString)
         val chunksTotalSize = chunkedNumbers.size
         val result = StringJoiner(" ")
+
+        if(number < 0) {
+            result.add("negative")
+        }
 
         for (index in 0 until chunkedNumbers.size) {
             val chunk = chunkedNumbers.pop()
