@@ -6,9 +6,9 @@ There are some business restrictions, which are:
 
 These are some examples:
 
-- 432 -> four hundred thirty two
-- 2147483647 -> two billion one hundred forty seven million four hundred eighty three thousand six hundred forty seven.
-- 0 -> zero
+- `432 -> four hundred thirty two`
+- `2147483647 -> two billion one hundred forty seven million four hundred eighty three thousand six hundred forty seven.`
+- `0 -> zero`
 
 # Requirements
 Just two thinks:
