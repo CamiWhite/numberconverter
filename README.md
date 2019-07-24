@@ -21,8 +21,8 @@ any version may work.
 .
 ├── src                                     # All the application sources are here
 │   ├── main                                # The main application
-         ├── kotlin                         # Where the full application is stored
-         └── resources                      # Just the home of the `application.yml` file
+│   │    ├── kotlin                         # Where the full application is stored
+│   │    └── resources                      # Just the home of the `application.yml` file
 │   └── test                                # Home of the unit tests
 ├── gradle                                  # Gradle wrapper
 └── *
