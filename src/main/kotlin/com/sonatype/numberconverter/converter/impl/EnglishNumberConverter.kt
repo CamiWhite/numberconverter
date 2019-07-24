@@ -1,9 +1,8 @@
 package com.sonatype.numberconverter.converter.impl
 
 import com.sonatype.numberconverter.converter.NumberConverter
+import com.sonatype.numberconverter.util.StringUtils
 import java.util.*
-import kotlin.math.absoluteValue
-import kotlin.math.ceil
 
 /**
  * Singleton english converter to convert numbers to its text equivalent in english
@@ -41,7 +40,7 @@ object EnglishNumberConverter: NumberConverter {
             numberAsString = numberAsString.removePrefix("-")
         }
 
-        val chunkedNumbers = splitInChunks(numberAsString)
+        val chunkedNumbers = StringUtils.splitInChunks(numberAsString)
         val chunksTotalSize = chunkedNumbers.size
 
         for (index in 0 until chunkedNumbers.size) {
@@ -70,44 +69,17 @@ object EnglishNumberConverter: NumberConverter {
 
         val hundred = mutableNumber / 100
         if (hundred > 0) {
-            resultBuilder.add("${numbers[hundred]}")
+            resultBuilder.add(numbers[hundred])
             resultBuilder.add("hundred")
         }
         mutableNumber %= 100
         if (mutableNumber < 20) {
-            resultBuilder.add("${numbers[mutableNumber]}")
+            resultBuilder.add(numbers[mutableNumber])
         } else {
             val tens = mutableNumber / 10
-            resultBuilder.add("${numbers[tens * 10]}")
-            resultBuilder.add("${numbers[mutableNumber % 10]}")
+            resultBuilder.add(numbers[tens * 10])
+            resultBuilder.add(numbers[mutableNumber % 10])
         }
         return resultBuilder.toString()
-    }
-
-    /**
-     * Splits the string into chunks of size 3
-     *
-     * @param string The string to be divided
-     * @return A stack with the chunks
-     */
-    private fun splitInChunks(string: String): Deque<String> {
-        val chunks = ArrayDeque<String>()
-
-        if(string.length < 3) {
-            chunks.push(string)
-            return chunks
-        }
-
-        val numberOfChunks = ceil(string.length / 3.0).toInt()
-        var min = string.length - 3
-        var max = string.length
-
-        for (i in 0 until numberOfChunks) {
-            chunks.push(string.substring(min, max))
-            max = min
-            min = if(min < 3) 0 else min - 3
-        }
-
-        return chunks
     }
 }
