@@ -41,7 +41,7 @@ encourage to execute the production version for testing purposes
 ### Production Mode
 To execute the application in this mode lets execute in steps the following commands:
 - `./gradlew clean build`
-- `java -jar build/libs/com.sonatype.numberconverter-1.0.jar`
+- `java -Dspring.profiles.active=PROD -jar build/libs/com.sonatype.numberconverter-1.0.jar`
 
 ### Playing with the application
 Once you've executed the application you are probably seeing a console prepared to accept commands. Just type 
